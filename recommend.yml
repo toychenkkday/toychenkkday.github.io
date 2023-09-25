@@ -13,11 +13,11 @@ tags:
   - name: order_list
     description: 訂購頁
 paths:
-  /v3/recommend/order_list/after_confirm:
+  /v3/recommend/order_list/mixed:
     get:
       tags:
         - order_list
-      summary: 訂單管理頁連結推薦
+      summary: 訂單管理頁 - 混合版位
       parameters:
         - name: device_id
           in: query
@@ -202,31 +202,105 @@ paths:
                   data:
                     type: object
                     properties:
-                      travel_type:
-                        type: string
-                        enum:
-                          - domestic
-                          - outbound
-                        example: domestic
                       order_mid:
                         type: string
-                      links:
+                        example: 23KKToyIsHandsome
+                      mixed_recommend:
                         type: array
-                        items:
-                          type: object
+                        example: [
+                          {
+                            "name": "product",
+                            "data": {
+                              "id": 109961,
+                              "prod_oid": 109961,
+                              "name": "桃園青埔|Xpark 都會型水生公園門票",
+                              "introduction": "由日本橫濱八景島首度跨海來台桃園開設分館「Xpark」...",
+                              "rating_count": 1000,
+                              "rating_star": 4,
+                              "order_count": 100,
+                              "confirm_hour": 0,
+                              "instant_booking": true,
+                              "instant_use": true,
+                              "free_refund_policy": true,
+                              "free_refund_before_day": 8,
+                              "earliest_sale_date": 20221109,
+                              "sale_status": 1,
+                              "purchase_type": null,
+                              "purchase_date": 20221109,
+                              "is_tourism_product": true,
+                              "readable_url": null,
+                              "main_cat_key": "M05",
+                              "promo_tag_keys": [
+                                  "string"
+                              ],
+                              "cat_key": [
+                                  "TAG_3_4"
+                              ],
+                              "theme_code": [
+                                  "string"
+                              ],
+                              "product_labels": [
+                                  "string"
+                              ],
+                              "img_url": "https://img.sit.kkday.com/image/jpg",
+                              "img_url_list": [
+                                  "https://img.sit.kkday.com/image/jpg"
+                              ],
+                              "durationt": 120,
+                              "days": 0,
+                              "hours": 2,
+                              "minutes": 0,
+                              "currency": "TWD",
+                              "display_sale_price": 500,
+                              "sale_price": 500,
+                              "display_price": 1255,
+                              "price": 1255,
+                              "discount": -1.51,
+                              "is_display_price": false,
+                              "app_cheaper_than_web": false,
+                              "max_price": 13231232,
+                              "countries": [
+                                  {
+                                      "id": "A01-001",
+                                      "name": "台灣",
+                                      "cities": [
+                                          {
+                                              "id": "A01-001-00001",
+                                              "name": "台北"
+                                          }
+                                      ]
+                                  }
+                              ],
+                              "is_marketplace": false,
+                              "supplier_oid_list": [
+                                  10693
+                              ],
+                              "supplier_name": "string",
+                              "supplier_logo": "string",
+                              "supplier_award": 0,
+                              "is_zero_price": false
+                            }
+                          },
+                          {
+                            "name": "category_icon",
+                            "data": {
+                                "id": "rec_cat_5",
+                                "name": "全球租車",
+                                "location": {
+                                  "name": "台北"
+                                },
+                                "show_order_count": "583K+",
+                                "img_url": "",
+                                "link": "https://www.kkday.com/zh-tw/car-rentals"
+                            }
+                          }
+                        ]
+                      location:
+                        type: object
                         properties:
-                          id:
+                          key:
                             type: string
-                            example: rec_cat_5
+                            default: A01-001-00001
                           name:
                             type: string
-                            example: 租車
-                          price:
-                            type: number
-                            example: 8.7
-                          pictogram_id:
-                            type: string
-                            example: picto_cat_car
-                          url:
-                            type: string
-                            example: "https://www.kkday.com/zh-tw/car-rentals"
+                            example: 台北
