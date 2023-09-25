@@ -1,0 +1,232 @@
+openapi: 3.0.3
+info:
+  title: Recommend API
+  description: |-
+    This is a API for [recommend-api](https://github.com/kkday-it/kkday-recommend-api)
+  version: 1.0.0
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://recommend.sit.kkday.com
+tags:
+  - name: order_list
+    description: 訂購頁
+paths:
+  /v3/recommend/order_list/after_confirm:
+    get:
+      tags:
+        - order_list
+      summary: 訂單管理頁連結推薦
+      parameters:
+        - name: device_id
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: member_uuid
+          in: query
+          schema:
+            type: string
+            nullable: true
+        - name: required_locale
+          in: query
+          required: true
+          schema:
+            type: string
+            example: tw
+            enum:
+              - kk
+              - sg
+              - ph
+              - id
+              - jp
+              - kr
+              - th
+              - vn
+              - cn
+              - my
+              - hk
+              - tw
+              - au
+              - nz
+              - us
+        - name: source
+          in: query
+          required: True
+          schema:
+            type: string
+            enum:
+              - web
+              - mweb
+              - ios
+              - android
+            example: web
+          description: >
+            來源:
+              * `web` - 網頁
+              * `mweb` - 手機網頁
+              * `ios` - 蘋果裝置
+              * `android` - 安卓裝置
+        - name: lang
+          in: query
+          required: true
+          schema:
+            type: string
+            example: zh-tw
+            enum:
+              - en
+              - ja
+              - ko
+              - th
+              - vi
+              - zh-cn
+              - zh-hk
+              - zh-tw
+          description: >
+            Common Parameter <br>
+            語言:
+              * `en` - 英文
+              * `ja` - 日文
+              * `ko` - 韓文
+              * `th` - 泰文
+              * `vi` - 越南文
+              * `zh-cn` - 簡中
+              * `zh-hk` - 香港繁中
+              * `zh-tw` - 台灣繁中
+        - name: cid
+          in: query
+          schema:
+            type: string
+        - name: ud1
+          in: query
+          schema:
+            type: string
+        - name: ud2
+          in: query
+          schema:
+            type: string
+        - name: ip
+          in: query
+          schema:
+            type: string
+          example: "8.8.8.8"
+        - name: currency
+          in: query
+          required: true
+          schema:
+            type: string
+            example: TWD
+          description: 幣別
+        - name: count
+          in: query
+          schema:
+            type: integer
+            default: 5
+          description: "數量預設為5"
+        - name: orders
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                country_keys:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        default: A01-001
+                      name:
+                        type: string
+                        example: 台灣
+                      cities:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              default: A01-001-00001
+                            name:
+                              type: string
+                              example: 台北
+                city_keys:
+                  type: array
+                  items:
+                    type: string
+                    default: A01-001-00001
+                  description: kkday城市陣列
+                order_mid:
+                  type: string
+                cat_keys:
+                  type: array
+                  items:
+                    type: string
+                    example: TAG_3_4
+                prod_mid:
+                  type: string
+                  default: 123
+                order_date:
+                  type: string
+                  example: "20230115"
+                back_date:
+                  type: string
+                  example: "20230115"
+                status:
+                  type: string
+                  example: "GO"
+                price_total:
+                  type: number
+          description: 訂單
+      responses:
+        "200":
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metadata:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: "0000"
+                      desc:
+                        type: string
+                        example: Success
+                  data:
+                    type: object
+                    properties:
+                      travel_type:
+                        type: string
+                        enum:
+                          - domestic
+                          - outbound
+                        example: domestic
+                      order_mid:
+                        type: string
+                      links:
+                        type: array
+                        items:
+                          type: object
+                        properties:
+                          id:
+                            type: string
+                            example: rec_cat_5
+                          name:
+                            type: string
+                            example: 租車
+                          price:
+                            type: number
+                            example: 8.7
+                          pictogram_id:
+                            type: string
+                            example: picto_cat_car
+                          url:
+                            type: string
+                            example: "https://www.kkday.com/zh-tw/car-rentals"
