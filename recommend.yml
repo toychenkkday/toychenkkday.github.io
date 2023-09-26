@@ -149,12 +149,14 @@ paths:
                 back_date:
                   type: string
                   example: "20230825"
+                  description: 結束日期
                 status:
                   type: string
                   example: "GO"
-                price_total:
-                  type: number
-                  example: 1224
+                timezone:
+                  type: string
+                  example: "Asia/Taipei"
+                  description: "時區"
           description: 訂單
       responses:
         "200":
