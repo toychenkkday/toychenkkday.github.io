@@ -280,3 +280,9 @@ paths:
                           name:
                             type: string
                             example: 台北
+                          type:
+                            type: string
+                            example: city
+                          url_name:
+                            type: string
+                            example: taipei
