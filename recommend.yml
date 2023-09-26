@@ -276,7 +276,7 @@ paths:
                         properties:
                           key:
                             type: string
-                            default: A01-001-00001
+                            example: A01-001-00001
                           name:
                             type: string
                             example: 台北
