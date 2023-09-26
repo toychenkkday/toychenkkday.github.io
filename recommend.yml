@@ -13,7 +13,7 @@ tags:
   - name: order_list
     description: 訂購頁
 paths:
-  /v3/recommend/order_list/mixed:
+  /v3/recommend/order_list/also_bought:
     get:
       tags:
         - order_list
