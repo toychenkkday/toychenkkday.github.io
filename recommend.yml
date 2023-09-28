@@ -145,12 +145,11 @@ paths:
                   default: 1781
                 order_date:
                   type: string
-                  example: "1653274440"
-                  description: timestamp
+                  example: "20230818"
                 back_date:
                   type: string
-                  example: "1696032000"
-                  description: 結束日期 timestamp
+                  example: "20230825"
+                  description: 結束日期
                 status:
                   type: string
                   example: "GO"
